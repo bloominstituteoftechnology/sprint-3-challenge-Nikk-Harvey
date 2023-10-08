@@ -58,7 +58,45 @@
       // 🧠 Implement a `getAllReversed` method which returns the ints in reverse order
       // ❗ WARNING: except for `getAllReversed`, methods must respect the order of the integers
       // ❗ WARNING: note that none of the methods actually mutate the `ints` property
-
+      constructor(...args){
+        this.ints = args;
+      }
+      getAll() {
+        return this.ints;
+      }
+      getEvens() {
+       let nums = this.ints.filter((num) => num % 2 === 0);
+       return nums
+      }
+      getNegatives() {
+        let newNums = this.ints.filter((num) => num < 0);
+        return newNums
+      }
+      getAllSquared() {
+       return this.ints.map(int => int ** 2)
+      }
+      pop() {
+        let poppedNum = this.ints.pop()
+        return poppedNum
+      }
+      push(int) {
+        let updatedInts = this.ints;
+        updatedInts.push(int);
+        return updatedInts
+      }
+      getEveryNth(n) {
+        let result = [];
+        for (let i = 0; i < this.ints.length; i += n) {
+          if (i < this.ints.length) {
+            result.push(this.ints[i]);
+          }
+        }
+        return result
+      }
+      getAllReversed() {
+        let reverseNums = this.ints.reverse();
+        return reverseNums
+      }
     }
 
     // 👉 CHALLENGE 2 NerfGun
@@ -76,7 +114,43 @@
       //      * When engaging the safety, return "Safety enabled!"
       //      * When disengaging the safety, return "Safety disabled!"
       // 🌟 HINT: instances need to keep track of their maximum capacity as well as their current capacity
-
+      constructor(shots) {
+        this.count = shots;
+        this.safetyOn = true;
+        this.capacity = shots;
+      }
+      toggleSafety() {
+        if (this.safetyOn === false) {
+          this.safetyOn = true
+          return "Safety enabled!" 
+        } 
+        else if (this.safetyOn === true) {
+          this.safetyOn = false
+          return "Safety disabled!"
+        }
+      }
+      shoot() {
+        if (this.count && this.safetyOn === false){
+          this.count -= 1
+          return "Bang!"
+        } else {
+          return "Click!"
+        }
+        
+      }
+      reload(num) {
+        
+        if (typeof num !== "number" || num <= 0) {
+          return "Error reloading!"
+        }
+        if (this.count + num > this.capacity) {
+          this.count = this.capacity;
+          return `${this.count} projectiles left!`
+        } else {
+          let newCount = this.count += num;
+          return `${newCount} projectiles left!`
+        }
+      }
     }
 
     // 👉 CHALLENGE 3 EBook
@@ -95,8 +169,22 @@
       //    ebook.next() // returns null
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
-
-    }
+      constructor (str, char) {
+        this.book = str.split('');
+        this.set = char;
+      }
+      next() {
+        for (let chars of this.book) {
+          let page = this.book.splice(0 , this.set);
+          let result = page.join('');
+          if (page.length === 0) {
+            return null
+          } else {
+            return result
+          }
+          }
+        }
+      }
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
