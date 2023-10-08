@@ -177,14 +177,14 @@
         for (let chars of this.book) {
           let page = this.book.splice(0 , this.set);
           let result = page.join('');
-          if (page.length === 0) {
+          if (result.length === 0) {
             return null
           } else {
             return result
           }
           }
+          }
         }
-      }
 
     // 👉 CHALLENGE 4 AntFarm
     class AntFarm {
