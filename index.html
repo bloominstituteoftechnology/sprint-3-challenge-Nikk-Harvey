@@ -170,20 +170,18 @@
       // 🌟 HINT: remember about the `slice` method which strings and arrays have
       // ❗ Feel free to implement `back`, although this is not required nor graded
       constructor (str, char) {
-        this.book = str.split('');
-        this.set = char;
-      }
-      next() {
-        for (let chars of this.book) {
-          let page = this.book.splice(0 , this.set);
-          let result = page.join('');
-          if (result.length === 0) {
-            return null
-          } else {
-            return result
+        this.book = str;
+        this.page = char;
+        this.current = 0;
+        }
+        next() {
+          if (this.current >= this.book.length) {
+            return null;
           }
-          }
-          }
+          let nextPage = this.book.slice(this.current, this.current + this.page );
+          this.current += this.page;
+          return nextPage;
+        }
         }
 
     // 👉 CHALLENGE 4 AntFarm
